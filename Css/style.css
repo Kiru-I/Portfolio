@@ -323,15 +323,13 @@ ul {
 }
 
 .dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #888;
+
   transition: background 0.3s;
+  color:var(--text-black-700);
 }
 
 .dot.active {
-  background: var(--skin-color);
+  color: var(--skin-color);
 }
 /* Show dots only on screens 1199px or smaller */
 @media (max-width: 1199px) {

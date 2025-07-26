@@ -122,7 +122,7 @@ document.addEventListener("touchend", function (e) {
 
 function handleSwipe() {
   const diffX = endX - startX;
-  const threshold = 175; // Make it more responsive (was 100 before)
+  const threshold = 100; // Make it more responsive (was 100 before)
   const activeIndex = getCurrentSectionIndex();
 
   if (diffX > threshold) {
@@ -173,3 +173,13 @@ function getCurrentSectionIndex() {
   }
   return 0;
 }
+
+// Dot Navigation (add this to make dots clickable)
+const navDots = document.querySelectorAll(".nav-dots .dot");
+
+navDots.forEach((dot, index) => {
+  dot.addEventListener("click", function (e) {
+    e.preventDefault();
+    navigateToSection(index); // Reuse your existing function
+  });
+});
