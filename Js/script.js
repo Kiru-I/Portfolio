@@ -1,3 +1,4 @@
+window.location.href = "https://kiru-i.netlify.app/";
 // Typing Animation
 var typed = new Typed(".typing", {
   strings: ["", "Web Developer", "Python Developer", "Fullstack Developer"],
@@ -54,16 +55,22 @@ function addBackSection(num) {
 
 function showSection(element) {
   const target = element.getAttribute("href").split("#")[1];
-  const targetSection = document.getElementById(target);
+  const targetIndex = Array.from(allSection).findIndex(sec => sec.id === target);
+  const currentIndex = getCurrentSectionIndex();
 
-  for (let i = 0; i < totalSection; i++) {
-    allSection[i].classList.remove("active", "slide-from-left");
+  allSection.forEach(section =>
+    section.classList.remove("active", "slide-left", "slide-right")
+  );
 
-    if (allSection[i].id === target) {
-      allSection[i].classList.add("slide-from-left", "active");
-      updateDots(i); // ← update dots here when section is shown
-    }
+  if (targetIndex < currentIndex) {
+    allSection[targetIndex].classList.add("slide-left");
+  } else if (targetIndex > currentIndex) {
+    allSection[targetIndex].classList.add("slide-right");
   }
+
+  allSection[targetIndex].classList.add("active");
+
+  updateDots(targetIndex);
 }
 
 
@@ -104,6 +111,21 @@ function asideSectionTogglerBtn() {
   }
 }
 
+//Swipe
+function handleSwipe() {
+  const diffX = endX - startX;
+  const threshold = 100;
+  const activeIndex = getCurrentSectionIndex();
+
+  if (diffX > threshold) {
+    const prevIndex = (activeIndex - 1 + totalSection) % totalSection;
+    navigateToSection(prevIndex, "right");
+  } else if (diffX < -threshold) {
+    const nextIndex = (activeIndex + 1) % totalSection;
+    navigateToSection(nextIndex, "left");
+  }
+}
+
 let startX = 0;
 let endX = 0;
 
@@ -120,21 +142,39 @@ document.addEventListener("touchend", function (e) {
   }
 }, { passive: true });
 
-function handleSwipe() {
-  const diffX = endX - startX;
-  const threshold = 100; // Make it more responsive (was 100 before)
-  const activeIndex = getCurrentSectionIndex();
+// Slide left or right
+function navigateToSection(index, direction) {
+  const currentIndex = getCurrentSectionIndex();
 
-  if (diffX > threshold) {
-    // Swipe right → previous
-    const prevIndex = (activeIndex - 1 + totalSection) % totalSection;
-    navigateToSection(prevIndex);
-  } else if (diffX < -threshold) {
-    // Swipe left → next
-    const nextIndex = (activeIndex + 1) % totalSection;
-    navigateToSection(nextIndex);
+  removeBackSection();
+  addBackSection(currentIndex);
+
+  allSection.forEach(section =>
+    section.classList.remove("active", "slide-from-left", "slide-from-right")
+  );
+
+  allSection.forEach(section => {
+    section.classList.remove("slide-left", "slide-right", "active");
+  });
+
+  allSection[index].classList.add("active");
+
+  if (direction === "left") {
+    allSection[index].classList.add("slide-right");
+  } else if (direction === "right") {
+    allSection[index].classList.add("slide-left");
   }
+
+  updateNav(navList[index].querySelector("a"));
+  updateDots(index);
+
+  const targetId = targetSection.getAttribute("id");
+  const navLink = document.querySelector(`.nav a[href="#${targetId}"]`);
+  if (navLink) updateNav(navLink);
 }
+
+
+// Dots
 
 function updateDots(index) {
   const dots = document.querySelectorAll(".dot");
@@ -142,27 +182,6 @@ function updateDots(index) {
   if (dots[index]) {
     dots[index].classList.add("active");
   }
-}
-
-function navigateToSection(index) {
-  removeBackSection();
-  addBackSection(getCurrentSectionIndex());
-
-  allSection.forEach(section => section.classList.remove("active"));
-  allSection[index].classList.add("active");
-
-  updateNav(navList[index].querySelector("a"));
-  updateDots(index); // ← Add this
-
-  for (let i = 0; i < totalSection; i++) {
-    allSection[i].classList.remove("active", "slide-from-left");
-  }
-
-  allSection[index].classList.add("active", "slide-from-left");
-
-  const targetId = allSection[index].getAttribute("id");
-  const navLink = document.querySelector(`.nav a[href="#${targetId}"]`);
-  if (navLink) updateNav(navLink);
 }
 
 function getCurrentSectionIndex() {
@@ -180,6 +199,11 @@ const navDots = document.querySelectorAll(".nav-dots .dot");
 navDots.forEach((dot, index) => {
   dot.addEventListener("click", function (e) {
     e.preventDefault();
-    navigateToSection(index); // Reuse your existing function
+    const currentIndex = getCurrentSectionIndex();
+
+    let direction = "left";
+    if (index < currentIndex) direction = "right";
+
+    navigateToSection(index, direction);
   });
 });

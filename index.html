@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="refresh" content="0;url=https://kiru-i.netlify.app/">
     <title>Julian Benhart</title>
     <link rel="shortcut icon" href="./Images/logo.png" type="image/x-icon" />
     <link rel="stylesheet" href="Css/style.css" />
@@ -84,10 +85,10 @@ I'm a Full Stack Web Developer with practical experience gained through personal
               </div>
             </div>
             <div class="row">
-              <div class="about-content padd-15">
+              <div class="about-content padd-15W">
                 <div class="row">
                   <div class="about-text padd-15">
-                    <h3>I'm Julian Benhart an <span class="typing2"></span></h3>
+                    <h3>I'm Julian Benhart a <span class="typing2"></span></h3>
                     <p>
                       Innovative SMK Plus Pelita Nusantara student driven by curiosity and paasion for software development. 
                       Dedicated to making meaningful contributions in the tech industry. 
@@ -362,7 +363,7 @@ I'm a Full Stack Web Developer with practical experience gained through personal
                     <div class="portfolio-content">
                       <h3 class="portfolio-title">Article Website</h3>
                       <p class="portfolio-description">
-                        This is an article on Tuyu, a band that was involved in some controversies.
+                        An article about Tuyu, a band known for both their music and past controversies.
                       </p>
                       <div class="tech-stack">
                         <span>HTML</span>
@@ -383,7 +384,7 @@ I'm a Full Stack Web Developer with practical experience gained through personal
                     <div class="portfolio-content">
                       <h3 class="portfolio-title">API using NestJS</h3>
                       <p class="portfolio-description">
-                        This API was developed using NestJS, a powerful Node.js framework, in combination with a MySQL database.
+                        Built an API with NestJS and MySQL, following REST principles and scalable architecture.
                       </p>
                       <div class="tech-stack">
                         <span>TypeScript</span>
@@ -406,7 +407,7 @@ I'm a Full Stack Web Developer with practical experience gained through personal
                     <div class="portfolio-content">
                       <h3 class="portfolio-title">Social Media Website</h3>
                       <p class="portfolio-description">
-                        This project is my attempt at building a social media platform inspired by Twitter and Facebook, featuring user authentication, post creation, and role-based access control.
+                        A mini social media platform inspired by Twitter and Facebook, featuring user authentication, post creation, and role-based access control.
                       </p>
                       <div class="tech-stack">
                         <span>PHP</span>
@@ -427,7 +428,7 @@ I'm a Full Stack Web Developer with practical experience gained through personal
                     <div class="portfolio-content">
                       <h3 class="portfolio-title">Learning Website</h3>
                       <p class="portfolio-description">
-                        This is an educational website for learning programming languages, developed using the MERN stack.
+                        An educational platform built with the MERN stack, helping users learn programming languages interactively.
                       </p>
                       <div class="tech-stack">
                         <span>ReactJS</span>
@@ -507,15 +508,17 @@ I'm a Full Stack Web Developer with practical experience gained through personal
             <!-- Contact Form -->
 
             <div class="row">
-              <form class="contact-form padd-15" name="contact" netlify>
+              <form class="contact-form padd-15" name="contact" method="POST" data-netlify="true">
                 <div class="row">
                   <div class="form-item col-6 padd-15">
                     <div class="form-group">
+                      <input type="hidden" name="form-name" value="contact">
                       <input
                         type="text"
                         name="name"
                         class="form-control"
                         placeholder="Name"
+                        required
                       />
                     </div>
                   </div>
@@ -526,6 +529,7 @@ I'm a Full Stack Web Developer with practical experience gained through personal
                         name="email"
                         class="form-control"
                         placeholder="Email"
+                        required
                       />
                     </div>
                   </div>
@@ -550,6 +554,7 @@ I'm a Full Stack Web Developer with practical experience gained through personal
                         class="form-control"
                         id=""
                         placeholder="Message"
+                        required
                       ></textarea>
                     </div>
                   </div>
@@ -575,7 +580,11 @@ I'm a Full Stack Web Developer with practical experience gained through personal
               </div>
             </div>
             <a href="Julian-Benhart_CV.pdf" style="color: var(--skin-color);">Download my CV here</a>
-            <iframe src="Julian-Benhart_CV.pdf" width="100%" height="600px"></iframe>
+            <iframe
+              src="Julian-Benhart_CV.pdf#navpanes=0&scrollbar=0"
+              width="100%"
+              height="600px">
+            </iframe>
             </div>
           </div>
         </section>

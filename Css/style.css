@@ -63,15 +63,34 @@ ul {
 .section.active {
   z-index: 2;
   opacity: 1;
-  animation: slideSection 1s ease;
+}
+.section.slide-left {
+  animation: slideSectionLeft 0.6s ease both;
 }
 
-@keyframes slideSection {
-  0% {
-    transform: translateX(100%);
+.section.slide-right {
+  animation: slideSectionRight 0.6s ease both;
+}
+
+@keyframes slideSectionLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0.5;
   }
-  100% {
+  to {
     transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+@keyframes slideSectionRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
   }
 }
 .hidden {
