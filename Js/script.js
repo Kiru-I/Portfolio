@@ -1,4 +1,3 @@
-window.location.href = "https://kiru-i.netlify.app/";
 // Typing Animation
 var typed = new Typed(".typing", {
   strings: ["", "Web Developer", "Python Developer", "Fullstack Developer"],
@@ -207,3 +206,10 @@ navDots.forEach((dot, index) => {
     navigateToSection(index, direction);
   });
 });
+
+      if (!window.location.href.startsWith("https://kiru-i.netlify.app")) {
+        const meta = document.createElement("meta");
+        meta.httpEquiv = "refresh";
+        meta.content = "0;url=https://kiru-i.netlify.app/";
+        document.head.appendChild(meta);
+      }
