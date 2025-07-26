@@ -323,9 +323,8 @@ ul {
 }
 
 .dot {
-
   transition: background 0.3s;
-  color:var(--text-black-700);
+  color: var(--text-black-700);
 }
 
 .dot.active {
