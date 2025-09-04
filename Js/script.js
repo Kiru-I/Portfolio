@@ -207,9 +207,9 @@ navDots.forEach((dot, index) => {
   });
 });
 
-      if (!window.location.href.startsWith("https://kiru-i.netlify.app")) {
-        const meta = document.createElement("meta");
-        meta.httpEquiv = "refresh";
-        meta.content = "0;url=https://kiru-i.netlify.app/";
-        document.head.appendChild(meta);
-      }
+if (!window.location.href.startsWith("https://kiru-i.netlify.app")) {
+  const meta = document.createElement("meta");
+  meta.httpEquiv = "refresh";
+  meta.content = "0;url=https://kiru-i.netlify.app/";
+  document.head.appendChild(meta);
+}
